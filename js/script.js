@@ -208,14 +208,3 @@ module.render = function(){
 	});
 	
 }
-
-
-
-
-
-
-
-
-
-
-
