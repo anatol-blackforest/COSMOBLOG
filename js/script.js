@@ -146,7 +146,7 @@ module.render = function(){
 			if(item.dataset.pushing == "title" || item.dataset.pushing == "text"){
 				pushedElem[item.dataset.pushing] = item.value.toLowerCase().trim();
 			}else if(item.dataset.pushing == "thumbnail" || item.dataset.pushing == "big-image"){
-				pushedElem.image[item.dataset.pushing]  = item.value.toLowerCase().trim();
+				pushedElem.image[item.dataset.pushing]  = item.value.trim();
 			}else if(item.dataset.pushing == "categories" ){
 				pushedElem[item.dataset.pushing] = item.value.toLowerCase().split(",").map(i => i.trim());
 			}
