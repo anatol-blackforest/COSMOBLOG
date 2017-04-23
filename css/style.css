@@ -1029,14 +1029,14 @@ img {
 	float: left;
 	margin: 0;
 	padding: 0;
-	width: 340px;
+	width: 300px;
 }
 #body .header div .sidebar ul {
 	display: inline-block;
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	width: 340px;
+	width: 300px;
 }
 #body .header div .sidebar ul li:first-child {
 	border: medium none;
@@ -1059,7 +1059,7 @@ img {
 	padding: 0;
 	text-align: left;
 	text-transform: uppercase;
-	width: 340px;
+	width: 300px;
 }
 #body .header div .sidebar ul li a {
 	display: block;
@@ -1112,7 +1112,7 @@ img {
 	list-style: none outside none;
 	margin: 0;
 	padding: 12px 0 0;
-	width: 340px;
+	width: 300px;
 }
 #body .header div .sidebar ul li ul li:first-child {
 	padding: 0;
