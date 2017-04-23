@@ -144,7 +144,7 @@ module.render = function(){
 		
 		[...formPush].forEach(item => {
 			if(item.dataset.pushing == "title" || item.dataset.pushing == "text"){
-				pushedElem[item.dataset.pushing] = item.value.toLowerCase().trim();
+				pushedElem[item.dataset.pushing] = item.value.trim();
 			}else if(item.dataset.pushing == "thumbnail" || item.dataset.pushing == "big-image"){
 				pushedElem.image[item.dataset.pushing]  = item.value.trim();
 			}else if(item.dataset.pushing == "categories" ){
@@ -165,6 +165,7 @@ module.render = function(){
 			addBlock.style.backgroundColor = "black";
 			renderNews();
 			addBlock.classList.toggle("hidden");
+			addButton.classList.toggle("opened");
 			[...formPush].forEach(item => {item.value = ""});
 		}else{
 			addBlock.style.backgroundColor = "#8b0000";
