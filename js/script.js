@@ -11,6 +11,7 @@ module.render = function(){
 	const posts = document.getElementById('posts');
 	const reset = document.getElementById('reset');
 	const modal = document.getElementById('modal');
+	const datalist = document.getElementById('datalist');
 	const categoriesListRender = document.getElementById('category-list-render');
 	
 	const formPush = document.querySelectorAll("[data-pushing]");
@@ -30,6 +31,7 @@ module.render = function(){
 	const textEdit = document.createElement("textarea");
 	const categoryEdit = document.createElement("input");
 	const buttonEdit = document.createElement("button");
+	const datalistOption = document.createElement("option");
 	
 	const catListItem = document.createElement("li");
 	const catListText = document.createElement("h2");
@@ -83,9 +85,12 @@ module.render = function(){
 		categoriesListRender.innerHTML = "";
 		categoriesArr.forEach((i, iter) => {
 			let catItem = catListItem.cloneNode(true);
+			let datalistItem = datalistOption.cloneNode(true);
 			catItem.querySelector("h2").textContent = i;
 			categoriesListRender.appendChild(catItem);
-			
+			datalistItem.textContent = i;
+			datalistItem.value = i;
+			datalist.appendChild(datalistItem);
 		});
 	}
 	
