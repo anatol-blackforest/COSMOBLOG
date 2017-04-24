@@ -846,7 +846,7 @@ img {
 #body .header div ul li div a.more {
 	background-color: #3c0f38;
 	color: #ffffff;
-	display: block;
+	display: inline-block;
 	float: right;
 	font-family: Arial;
 	font-size: 14px;
@@ -857,7 +857,7 @@ img {
 	padding: 0;
 	text-align: center;
 	text-transform: uppercase;
-	width: 120px;
+	//width: 120px;
 }
 #body .header div ul li div a.more:hover {
 	background-color: #620031;
@@ -1008,7 +1008,7 @@ img {
 #body .header div .article ul li a.more, #body .header div .article ul li a.edit, #body .header div .article ul li a.delete{
 	background-color: #3c0f38;
 	color: #ffffff;
-	display: block;
+	display: inline-block;
 	float: right;
 	font-family: Arial;
 	font-size: 14px;
@@ -1019,13 +1019,14 @@ img {
 	padding: 0;
 	text-align: center;
 	text-transform: uppercase;
-	width: 120px;
+	width: auto;
+	padding:0 10px;
 	margin-left: 10px;
 }
 #body .header div .article ul li a.edit, #body .header div .article ul li a.delete{
     float: left;
 	margin:0 10px 0 0;
-	width: 60px;
+	//width: 60px;
 	cursor: pointer;
 }
 #body .header div .article ul li a.more:hover {
