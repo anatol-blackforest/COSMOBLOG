@@ -1,6 +1,6 @@
-﻿const module = {};
+﻿const Cosmomodule = {};
 
-module.render = function(){
+Cosmomodule.render = function(){
 	
 	// DOM generating
 	
