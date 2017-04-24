@@ -234,6 +234,7 @@ Cosmomodule.render = function(){
 	// фильтр
 	
 	filter.addEventListener("click",function(e){
+		
 		e.preventDefault();
 	
 		parameters = {};
