@@ -206,7 +206,7 @@ module.render = function(){
 			addButton.classList.toggle("opened");
 			[...formPush].forEach(item => {item.value = ""});
 		}else{
-			addBlock.style.backgroundColor = "#8b0000";
+			addBlock.style.backgroundColor = "#2B0206";
 			alert("Заполните все поля формы!")
 		}
 		

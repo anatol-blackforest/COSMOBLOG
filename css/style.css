@@ -1360,7 +1360,6 @@ width: 100%
 	padding: 15px 0 0 20px;
 	resize: none;
 	text-align: left;
-	text-transform: uppercase;
 	width: 441px;
 }
 #body .header div form input#submit {
@@ -1379,6 +1378,7 @@ width: 100%
 	text-align: center;
 	text-transform: uppercase;
 	width: 120px;
+	outline: none;
 }
 #body .header div form input#submit:hover {
 	background-color: #620031;
@@ -1515,6 +1515,8 @@ width: 100%
     width: 120px;
     margin-left: 10px;
 	border: none;
+	cursor: pointer;
+	outline: none;
 }
 #body .header div #posts form{
     margin: 0;
