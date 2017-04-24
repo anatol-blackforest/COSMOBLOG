@@ -83,6 +83,7 @@ module.render = function(){
 			})
 		});
 		categoriesListRender.innerHTML = "";
+		datalist.innerHTML = "";
 		categoriesArr.forEach((i, iter) => {
 			let catItem = catListItem.cloneNode(true);
 			let datalistItem = datalistOption.cloneNode(true);
