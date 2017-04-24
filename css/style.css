@@ -1005,7 +1005,7 @@ img {
 #body .header div .article ul li p a:hover {
 	color: #a3a3a3;
 }
-#body .header div .article ul li a.more {
+#body .header div .article ul li a.more, #body .header div .article ul li a.edit, #body .header div .article ul li a.delete{
 	background-color: #3c0f38;
 	color: #ffffff;
 	display: block;
@@ -1021,6 +1021,12 @@ img {
 	text-transform: uppercase;
 	width: 120px;
 	margin-left: 10px;
+}
+#body .header div .article ul li a.edit, #body .header div .article ul li a.delete{
+    float: left;
+	margin:0 10px 0 0;
+	width: 60px;
+	cursor: pointer;
 }
 #body .header div .article ul li a.more:hover {
 	background-color: #620031;
@@ -1301,6 +1307,9 @@ display: none;
 	text-align: left;
 	text-transform: uppercase;
 	width: 441px;
+}
+#body .header div form input[type="submit"], #body .header div form input[type="reset"]{
+    cursor: pointer;
 }
 #body .header div.sidebar form {
 	width: 100%;

@@ -24,15 +24,24 @@ module.render = function(){
 	postHeader = document.createElement("h1");
 	postDate = document.createElement("span");
 	postParagraph = document.createElement("p");
+	postDelete = document.createElement("a");
+	postEdit = document.createElement("a");
 	
-	postImageLink.className = "postimagelink"
-	postImage.className = "postimage"
+	postImageLink.className = "postimagelink";
+	postImage.className = "postimage";
+	postDelete.className = "delete";
+	postEdit.className = "edit";
+	
+	postEdit.textContent = "edit";
+	postDelete.textContent = "x";
 	
 	post.appendChild(postImageLink);
 	postImageLink.appendChild(postImage);
 	post.appendChild(postHeader);
 	post.appendChild(postDate);
 	post.appendChild(postParagraph);
+	post.appendChild(postDelete);
+	post.appendChild(postEdit);
 	
 	// Фильтруем новости. Модуль обходит и фильтрует как строки, так вложенные массивы и объекты в дате, выводя результат. 
 	
@@ -85,6 +94,8 @@ module.render = function(){
 				// слепок с шаблона новости
 				let node = post.cloneNode(true);
 				
+				node.id = item.ID;
+				
 				posts.appendChild(node);
 				if(item.image.thumbnail !== ""){
 					node.querySelector(".postimage").setAttribute("src", item.image.thumbnail);
@@ -132,7 +143,7 @@ module.render = function(){
 		// строим первичный объект новости для модели
 		
 		pushedElem = {
-		    "ID": (data.length+1).toString(),
+		    "ID": (data[data.length - 1].ID) + 1,
 			"title": "",
 			"date": `${monthes[(new Date()).getMonth()]} ${(new Date()).getDate()}, ${(new Date()).getFullYear()}`,
 			"text": "",
@@ -206,6 +217,23 @@ module.render = function(){
 	
 	reset.addEventListener("click", function(){
 		renderNews()
+	});
+	
+	// манипуляции со статьями
+	
+	document.addEventListener("click",function(e){
+		
+		// удаление статей
+		
+		if(e.target.className == "delete"){
+			data.forEach(function(item, index){
+				if(item.ID == e.target.parentNode.id){
+					data.splice(index, 1);
+				}
+			});
+			renderNews();
+		}
+		
 	});
 	
 }
