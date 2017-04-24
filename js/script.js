@@ -32,7 +32,6 @@ Cosmomodule.render = function(){
 	const categoryEdit = document.createElement("input");
 	const buttonEdit = document.createElement("button");
 	const datalistOption = document.createElement("option");
-	
 	const catListItem = document.createElement("li");
 	const catListText = document.createElement("h2");
 	
@@ -235,6 +234,7 @@ Cosmomodule.render = function(){
 	// фильтр
 	
 	filter.addEventListener("click",function(e){
+		
 		e.preventDefault();
 		parameters = {};
 		[...formFilters].map(item => {
