@@ -235,7 +235,7 @@ Cosmomodule.render = function(){
 	
 	filter.addEventListener("click",function(e){
 		e.preventDefault();
-		
+	
 		parameters = {};
 		[...formFilters].map(item => {
 			if(item.dataset.info){
