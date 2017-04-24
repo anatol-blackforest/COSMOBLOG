@@ -67,7 +67,6 @@ module.render = function(){
 	formEdit.appendChild(categoryEdit);
 	formEdit.appendChild(buttonEdit);
 	post.appendChild(formEdit);
-	
 	catListItem.appendChild(catListText);
 	
 	// список категорий
@@ -75,37 +74,27 @@ module.render = function(){
 	let categoriesList = function(){
 		categoriesArr = [];
 		data.forEach(item => {
-			item.categories.forEach(function(i){
+			item.categories.forEach(i => {
 				if(categoriesArr.indexOf(i) == -1 ){
 					categoriesArr.push(i.toLowerCase())
 				}
 			})
 		});
-		
 		categoriesListRender.innerHTML = "";
-		
-		categoriesArr.map(function(i, iter){
-			
+		categoriesArr.forEach((i, iter) => {
 			let catItem = catListItem.cloneNode(true);
-			
 			catItem.querySelector("h2").textContent = i;
 			categoriesListRender.appendChild(catItem);
 			
-		})
-		
-		console.log(categoriesArr)
+		});
 	}
 	
 	// Фильтруем новости. Модуль обходит и фильтрует как строки, так вложенные массивы и объекты в дате, выводя результат. 
 	
 	let filtering = function(propertyElem, property){
-		
 		if(propertyElem.value.trim().length > 0){
-			
 			filteredArray = filteredArray.filter(item => {
-				
 				itemValue = false
-				
 				if(typeof item[property] == 'string'){
 					if(item[property].toLowerCase().indexOf(parameters[property]) !== -1){
 						itemValue = true;
@@ -123,15 +112,10 @@ module.render = function(){
 						}
 					}
 				}
-				
 				return itemValue;
-				
 			});
-			
 			renderData();
-		
 		}
-		
 	}
 	
 	// рендер новостей
@@ -141,21 +125,18 @@ module.render = function(){
 		posts.innerHTML = "";
 		
 		if(filteredArray.length > 0){
-			
 			filteredArray.forEach(item => {
 				
 				// слепок с шаблона новости
+				
 				let node = post.cloneNode(true);
-				
 				node.id = item.ID;
-				
 				posts.appendChild(node);
 				if(item.image.thumbnail !== ""){
 					node.querySelector(".postimage").setAttribute("src", item.image.thumbnail);
 				}else{
 					node.removeChild(node.querySelector(".postimagelink"))
 				}
-				
 				node.querySelector("h1").textContent = item.title;
 				node.querySelector("span").textContent = item.date;
 				node.querySelector("p").textContent = item.text;
@@ -171,9 +152,7 @@ module.render = function(){
 						node.querySelector(".post-wrapper").appendChild(postReadmore);
 					})
 				}
-				
 			});
-			
 		}else{
 			posts.innerHTML = "Nothing found";
 		}
@@ -183,11 +162,9 @@ module.render = function(){
 	// вывод отрендеренных новостей при первой загрузке и добавлении
 	
 	let renderNews = function(){
-		
 		filteredArray = data.slice().reverse();
 		renderData();
 		categoriesList();
-		
 	}
 	
 	// добавление новой новости в модель (с последующим рендером на странице)
@@ -287,7 +264,7 @@ module.render = function(){
 		// удаление статей
 		
 		if(e.target.className == "delete"){
-			data.forEach(function(item, index){
+			data.forEach((item, index) => {
 				if(item.ID == e.target.closest("li").id){
 					data.splice(index, 1);
 				}
@@ -304,7 +281,7 @@ module.render = function(){
 		
 		if(e.target.className == "edit-button"){
 			e.preventDefault();
-			data.forEach(function(item, index){
+			data.forEach((item, index) => {
 				if(item.ID == e.target.closest("li").id){
 					data[index].title = e.target.closest("form").querySelector("[name='title-edit']").value;
 					data[index].text = e.target.closest("form").querySelector("[name='text-edit']").value;
@@ -327,7 +304,7 @@ module.render = function(){
 		
 		if(e.target.className == "postimage"){
 			modal.classList.toggle("hidden");
-			data.forEach(function(item){
+			data.forEach(item => {
 				if(item.ID == e.target.closest("li").id){
 					modal.querySelector("div img").setAttribute("src", item.image["big-image"]);
 				}
