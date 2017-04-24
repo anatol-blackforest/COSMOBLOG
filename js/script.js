@@ -10,38 +10,60 @@ module.render = function(){
 	const addBlock = document.getElementById('addblock');
 	const posts = document.getElementById('posts');
 	const reset = document.getElementById('reset');
+	const modal = document.getElementById('modal');
+	
 	
 	const formPush = document.querySelectorAll("[data-pushing]");
 	const formFilters = document.querySelectorAll("[data-info]");
 	
-	let filteredArray = data.slice().reverse(), parameters, itemValue, itemObjKey, post, postImageLink, postImage, postHeader, postDate, postParagraph, monthes, pushedElem, validatedPushingElem;
+	const post = document.createElement("li");
+	const postWrapper = document.createElement("div");
+	const postImageLink = document.createElement("a");
+	const postImage = document.createElement("img");
+	const postHeader = document.createElement("h1");
+	const postDate = document.createElement("span");
+	const postParagraph = document.createElement("p");
+	const postDelete = document.createElement("a");
+	const postEdit = document.createElement("a");
+	const formEdit = document.createElement("form");
+	const titleEdit = document.createElement("input");
+	const textEdit = document.createElement("textarea");
+	const categoryEdit = document.createElement("input");
+	const buttonEdit = document.createElement("button");
+	
+	let filteredArray = data.slice().reverse(), parameters, itemValue, itemObjKey, monthes, pushedElem, validatedPushingElem;
 	
 	// Создаем шаблон новости
-	
-	post = document.createElement("li");
-	postImageLink = document.createElement("a");
-	postImage = document.createElement("img");
-	postHeader = document.createElement("h1");
-	postDate = document.createElement("span");
-	postParagraph = document.createElement("p");
-	postDelete = document.createElement("a");
-	postEdit = document.createElement("a");
 	
 	postImageLink.className = "postimagelink";
 	postImage.className = "postimage";
 	postDelete.className = "delete";
 	postEdit.className = "edit";
+	buttonEdit.className = "edit-button";
+	formEdit.className = "hidden";
+	postWrapper.className = "post-wrapper";
 	
+	titleEdit.name = "title-edit";
+	textEdit.name = "text-edit";
+	categoryEdit.name = "category-edit";
+	
+	buttonEdit.textContent = "submit";
 	postEdit.textContent = "edit";
 	postDelete.textContent = "x";
 	
 	post.appendChild(postImageLink);
+	post.appendChild(postWrapper);
 	postImageLink.appendChild(postImage);
-	post.appendChild(postHeader);
-	post.appendChild(postDate);
-	post.appendChild(postParagraph);
-	post.appendChild(postDelete);
-	post.appendChild(postEdit);
+	postWrapper.appendChild(postHeader);
+	postWrapper.appendChild(postDate);
+	postWrapper.appendChild(postParagraph);
+	postWrapper.appendChild(postDelete);
+	postWrapper.appendChild(postEdit);
+	formEdit.appendChild(titleEdit);
+	formEdit.appendChild(textEdit);
+	formEdit.appendChild(categoryEdit);
+	formEdit.appendChild(buttonEdit);
+	post.appendChild(formEdit);
 	
 	// Фильтруем новости. Модуль обходит и фильтрует как строки, так вложенные массивы и объекты в дате, выводя результат. 
 	
@@ -106,13 +128,18 @@ module.render = function(){
 				node.querySelector("h1").textContent = item.title;
 				node.querySelector("span").textContent = item.date;
 				node.querySelector("p").textContent = item.text;
+				node.querySelector("[name='title-edit']").value = item.title
+				node.querySelector("[name='text-edit']").value = item.text
+				node.querySelector("[name='category-edit']").value = item.categories.join()
 				
-				item.categories.forEach(category => {
-					let postReadmore = document.createElement("a");
-					postReadmore.className = "more";
-					postReadmore.textContent = category; 
-					node.appendChild(postReadmore);
-				})
+				if(item.categories.length > 0){
+					item.categories.forEach(category => {
+						let postReadmore = document.createElement("a");
+						postReadmore.className = "more";
+						postReadmore.textContent = category; 
+						node.querySelector(".post-wrapper").appendChild(postReadmore);
+					})
+				}
 				
 			});
 			
@@ -205,7 +232,8 @@ module.render = function(){
 	
 	// поведение формы добавления новости
 	
-	addButton.addEventListener("click", function(){
+	addButton.addEventListener("click", function(e){
+		e.preventDefault();
 		addBlock.classList.toggle("hidden");
 		this.classList.toggle("opened")
 	});
@@ -215,23 +243,63 @@ module.render = function(){
 		addPost();
 	});
 	
-	reset.addEventListener("click", function(){
-		renderNews()
+	reset.addEventListener("click", function(e){
+		renderNews();
 	});
 	
 	// манипуляции со статьями
 	
 	document.addEventListener("click",function(e){
-		
+		e.stopPropagation();
 		// удаление статей
 		
 		if(e.target.className == "delete"){
 			data.forEach(function(item, index){
-				if(item.ID == e.target.parentNode.id){
+				if(item.ID == e.target.closest("li").id){
 					data.splice(index, 1);
 				}
 			});
 			renderNews();
+		}
+		
+		// редактирование статей
+
+		if(e.target.className == "edit"){
+			e.target.parentNode.classList.toggle("hidden");
+			e.target.closest("li").querySelector("form").classList.toggle("hidden");
+		}	
+		
+		if(e.target.className == "edit-button"){
+			e.preventDefault();
+			data.forEach(function(item, index){
+				if(item.ID == e.target.closest("li").id){
+					data[index].title = e.target.closest("form").querySelector("[name='title-edit']").value;
+					data[index].text = e.target.closest("form").querySelector("[name='text-edit']").value;
+					if(e.target.closest("form").querySelector("[name='category-edit']").value.trim().length > 0){
+						data[index].categories = e.target.closest("form").querySelector("[name='category-edit']").value.toLowerCase().split(",").map(i => i.trim());
+					}else{
+						data[index].categories = []
+					}
+					
+				}
+			});
+			
+			renderNews();
+			e.target.closest("form").classList.toggle("hidden");
+			e.target.closest("li").querySelector(".post-wrapper").classList.toggle("hidden");
+			
+		}
+		
+		if(e.target.className == "postimage"){
+			modal.classList.toggle("hidden");
+			data.forEach(function(item){
+				if(item.ID == e.target.closest("li").id){
+					modal.querySelector("div img").setAttribute("src", item.image["big-image"]);
+				}
+			})
+		}
+		if(e.target.className == "modal" || e.target.className == "modal-window"){
+			modal.classList.toggle("hidden");
 		}
 		
 	});

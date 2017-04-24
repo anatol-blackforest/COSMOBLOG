@@ -7,6 +7,11 @@
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
+    <div id="modal" class="modal hidden">
+		<div class="modal-window">
+			<img src="file:///D:/git/COSMOBLOG/images/satellite-dish.jpg" alt ="" />
+		</div>
+	</div>
 	<div id="page">
 		<div id="body">
 			<div class="header">
@@ -49,13 +54,13 @@
 							</li>
 							<li>
 								<h1>filters</h1>
-								<form>
+								<form action="#" name="form">
 
-									<input type="text" id="title" name="title" data-info="title" placeholder="title"></input>
+									<input type="text" id="title" name="title" data-info="title" placeholder="title" value=""></input>
 									
-									<input type="text" id="text" name="text" data-info="text" placeholder="text"></input>
+									<input type="text" id="text" name="text" data-info="text" placeholder="text" value=""></input>
 									
-									<input type="text" id="categories" data-info="categories" name="categories" placeholder="category"></input>
+									<input type="text" id="categories" data-info="categories" name="categories" placeholder="category" value=""></input>
 									
 									<input type="reset" id="reset" class="more" value="Сброс"></input>
 

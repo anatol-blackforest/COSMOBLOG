@@ -1248,8 +1248,11 @@ padding: 0 0 65px 0
 #body .header #addblock h2{
 padding: 0 0 20px 0
 }
-#body .header #addblock.hidden{
-display: none;
+.hidden{
+display: none !important;
+}
+#body .header div ul li div.post-wrapper{
+width: 100%
 }
 #body .header .addnews button{
     position:relative;
@@ -1494,4 +1497,49 @@ display: none;
 }
 #wix a img {
 	width: 100%;
+}
+.edit-button {
+    background-color: #3c0f38;
+    color: #ffffff;
+    display: block;
+    float: right;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: normal;
+    height: 31px;
+    line-height: 31px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 120px;
+    margin-left: 10px;
+	border: none;
+}
+#body .header div #posts form{
+    margin: 0;
+	width: 100%
+}
+#body .header div #posts input, #body .header div #posts textarea{
+	width: 540px
+}
+.modal{
+position: absolute;
+top: 0;
+left: 0 ;
+display: flex;
+z-index: 100;
+background:rgba(204, 204, 204, 0.5);
+width:100%;
+height: 100%;
+text-align: center;
+justify-content: center;
+cursor: pointer;
+}
+.modal > div.modal-window{
+display: flex;
+position:fixed;
+height:100%;
+align-items: center;
+//padding-top:200px;
 }
