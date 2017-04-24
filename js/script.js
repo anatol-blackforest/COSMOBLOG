@@ -290,6 +290,8 @@ module.render = function(){
 			
 		}
 		
+		// большое изображение по клику
+		
 		if(e.target.className == "postimage"){
 			modal.classList.toggle("hidden");
 			data.forEach(function(item){
