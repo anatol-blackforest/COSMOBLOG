@@ -1543,5 +1543,8 @@ display: flex;
 position:fixed;
 height:100%;
 align-items: center;
-//padding-top:200px;
+z-index: 99;
+}
+.modal > div.modal-window> img{
+z-index: 101
 }

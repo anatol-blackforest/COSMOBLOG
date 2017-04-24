@@ -250,7 +250,7 @@ module.render = function(){
 	// манипуляции со статьями
 	
 	document.addEventListener("click",function(e){
-		e.stopPropagation();
+		
 		// удаление статей
 		
 		if(e.target.className == "delete"){
@@ -300,10 +300,17 @@ module.render = function(){
 				}
 			})
 		}
-		if(e.target.className == "modal" || e.target.className == "modal-window"){
-			modal.classList.toggle("hidden");
-		}
 		
 	});
+	
+	// модальное окно
+	
+	modal.addEventListener("click",function(e){
+		modal.classList.toggle("hidden");
+	});
+	
+	modal.querySelector("div > img").addEventListener("click",function(e){
+		e.stopPropagation();
+	}, true);
 	
 }
