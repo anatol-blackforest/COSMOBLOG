@@ -287,6 +287,7 @@ module.render = function(){
 		
 		if(e.target.className == "edit-button"){
 			e.preventDefault();
+			
 			data.forEach((item, index) => {
 				if(item.ID == e.target.closest("li").id){
 					data[index].title = e.target.closest("form").querySelector("[name='title-edit']").value;
