@@ -11,7 +11,7 @@ module.render = function(){
 	const posts = document.getElementById('posts');
 	const reset = document.getElementById('reset');
 	const modal = document.getElementById('modal');
-	
+	const categoriesListRender = document.getElementById('category-list-render');
 	
 	const formPush = document.querySelectorAll("[data-pushing]");
 	const formFilters = document.querySelectorAll("[data-info]");
@@ -31,7 +31,10 @@ module.render = function(){
 	const categoryEdit = document.createElement("input");
 	const buttonEdit = document.createElement("button");
 	
-	let filteredArray = data.slice().reverse(), parameters, itemValue, itemObjKey, monthes, pushedElem, validatedPushingElem;
+	const catListItem = document.createElement("li");
+	const catListText = document.createElement("h2");
+	
+	let filteredArray = data.slice().reverse(), parameters, itemValue, itemObjKey, monthes, pushedElem, validatedPushingElem, categoriesArr;
 	
 	// Создаем шаблон новости
 	
@@ -64,6 +67,34 @@ module.render = function(){
 	formEdit.appendChild(categoryEdit);
 	formEdit.appendChild(buttonEdit);
 	post.appendChild(formEdit);
+	
+	catListItem.appendChild(catListText);
+	
+	// список категорий
+	
+	let categoriesList = function(){
+		categoriesArr = [];
+		data.forEach(item => {
+			item.categories.forEach(function(i){
+				if(categoriesArr.indexOf(i) == -1 ){
+					categoriesArr.push(i.toLowerCase())
+				}
+			})
+		});
+		
+		categoriesListRender.innerHTML = "";
+		
+		categoriesArr.map(function(i, iter){
+			
+			let catItem = catListItem.cloneNode(true);
+			
+			catItem.querySelector("h2").textContent = i;
+			categoriesListRender.appendChild(catItem);
+			
+		})
+		
+		console.log(categoriesArr)
+	}
 	
 	// Фильтруем новости. Модуль обходит и фильтрует как строки, так вложенные массивы и объекты в дате, выводя результат. 
 	
@@ -146,6 +177,7 @@ module.render = function(){
 		}else{
 			posts.innerHTML = "Nothing found";
 		}
+		
 	}
 	
 	// вывод отрендеренных новостей при первой загрузке и добавлении
@@ -154,6 +186,7 @@ module.render = function(){
 		
 		filteredArray = data.slice().reverse();
 		renderData();
+		categoriesList();
 		
 	}
 	
