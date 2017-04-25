@@ -180,7 +180,7 @@ Cosmomodule.render = function(){
 		
 		// Установка человеческих дней недели
 		
-		monthes=['January','Fabruary','Marth','April','May','June','July','August','September','October', 'November','December'];
+		monthes = ['January','Fabruary','Marth','April','May','June','July','August','September','October', 'November','December'];
 		
 		// строим первичный объект новости для модели
 		
