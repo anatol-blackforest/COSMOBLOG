@@ -296,7 +296,7 @@ Cosmomodule.render = function(){
 					data[index].title = e.target.closest("form").querySelector("[name='title-edit']").value;
 					data[index].text = e.target.closest("form").querySelector("[name='text-edit']").value;
 					if(e.target.closest("form").querySelector("[name='category-edit']").value.trim().length > 0){
-						data[index].categories = e.target.closest("form").querySelector("[name='category-edit']").value.toLowerCase().split(",").map(i => i.trim());
+						data[index].categories = e.target.closest("form").querySelector("[name='category-edit']").value.toLowerCase().split(",").map(i => i.trim()).filter((value, index, arr) => arr.indexOf(value) === index);
 					}else{
 						data[index].categories = []
 					}
