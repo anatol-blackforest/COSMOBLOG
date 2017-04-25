@@ -234,9 +234,8 @@ Cosmomodule.render = function(){
 	// фильтр
 	
 	filter.addEventListener("click",function(e){
-		
 		e.preventDefault();
-	
+		
 		parameters = {};
 		[...formFilters].map(item => {
 			if(item.dataset.info){
@@ -323,7 +322,7 @@ Cosmomodule.render = function(){
 	
 	// модальное окно
 	
-	modal.addEventListener("click",function(e){
+	modal.addEventListener("click",function(){
 		modal.classList.toggle("hidden");
 	});
 	
